@@ -779,8 +779,8 @@ public class GameFrame extends JFrame {
                         me.upCycle();
                     } else {
                         direction = "right";
-                        me.moveV(-Math.sqrt(2*speed));
-                        me.moveH(Math.sqrt(2*speed));
+                        me.moveV(-speed / Math.sqrt(2));
+                        me.moveH(speed / Math.sqrt(2));
                         me.rightCycle();
                     }
                     isMoving = true;
@@ -791,8 +791,8 @@ public class GameFrame extends JFrame {
                         me.leftCycle();
                     } else {
                         direction = "left";
-                        me.moveV(-Math.sqrt(2*speed));
-                        me.moveH(-Math.sqrt(2*speed));
+                        me.moveV(-speed / Math.sqrt(2));
+                        me.moveH(-speed / Math.sqrt(2));
                         me.leftCycle();
                     }
                     isMoving = true;
@@ -804,15 +804,15 @@ public class GameFrame extends JFrame {
                         isMoving = true;
                     }else{
                         direction = "left";
-                        me.moveV(Math.sqrt(2*speed));
-                        me.moveH(-Math.sqrt(2*speed));
+                        me.moveV(speed / Math.sqrt(2));
+                        me.moveH(-speed / Math.sqrt(2));
                         me.leftCycle();
                     }
                     isMoving = true;
                 }else if(down && right){
                     direction = "right";
-                    me.moveV(Math.sqrt(2*speed));
-                    me.moveH(Math.sqrt(2*speed));
+                    me.moveV(speed / Math.sqrt(2));
+                    me.moveH(speed / Math.sqrt(2));
                     me.rightCycle();
                     isMoving = true;
                 }else if (right && left){
