@@ -99,20 +99,30 @@ public class GameCanvas extends JComponent{
             g2d.setTransform(overlay);
             if (PlayerType.equals("Hunter")){
                if (hidingTime > 0){
-                    g2d.drawImage(darkForest, -64, -64, 1400, 768*2, null);
-                    g2d.setColor(new Color(0,0,0,90));
+                    g2d.drawImage(darkForest, 0, 0, getWidth(), getHeight(), null);
                     g2d.setColor(new Color(165, 0, 0));
-                    g2d.setFont(new Font("Papyrus", Font.BOLD, 50));
-                    g2d.drawString("The Skinwalker is hiding. " + hidingTime + " seconds left...", 40+230, 300);
-                    g2d.setFont(new Font("Papyrus", Font.BOLD, 70));
-                    g2d.drawString("You are the Hunter", 164+230, 106);
+
+                    Font titleFont = new Font("Papyrus", Font.BOLD, 70);
+                    g2d.setFont(titleFont);
+                    String title = "You are the Hunter";
+                    int titleX = (getWidth() - g2d.getFontMetrics().stringWidth(title)) / 2;
+                    g2d.drawString(title, titleX, 120);
+
+                    Font subFont = new Font("Papyrus", Font.BOLD, 40);
+                    g2d.setFont(subFont);
+                    String sub = "The Skinwalker is hiding. " + hidingTime + " seconds left...";
+                    int subX = (getWidth() - g2d.getFontMetrics().stringWidth(sub)) / 2;
+                    g2d.drawString(sub, subX, getHeight() / 2);
                }
 
            } else if (PlayerType.equals("Skinwalker")){
                 if (hidingTime > 0){
                     g2d.setColor(new Color(165, 0, 0));
-                    g2d.setFont(new Font("Papyrus", Font.BOLD, 30));
-                    g2d.drawString("You are the Skinwalker, you have " + hidingTime + " seconds to hide. Good luck!", 50, 63);
+                    Font f = new Font("Papyrus", Font.BOLD, 30);
+                    g2d.setFont(f);
+                    String msg = "You are the Skinwalker, you have " + hidingTime + " seconds to hide. Good luck!";
+                    int msgX = (getWidth() - g2d.getFontMetrics().stringWidth(msg)) / 2;
+                    g2d.drawString(msg, msgX, 63);
                }
            }
            g2d.setTransform(camera);
