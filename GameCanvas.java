@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 public class GameCanvas extends JComponent{
-    private int hidingTime, frameCounter;
+    private int hidingTime, huntingTime, revengeTime, frameCounter;
     private BufferedImage tra, darkForest, skinWalkerAttack;
     //screen settings
     final int originalTileSize = 16; //16x16
@@ -125,6 +125,31 @@ public class GameCanvas extends JComponent{
                     g2d.drawString(msg, msgX, 63);
                }
            }
+
+           if (hidingTime <= 0){
+                String hudLabel;
+                int hudTime;
+                if (huntingTime > 0){
+                    hudLabel = "Hunt: ";
+                    hudTime = huntingTime;
+                } else {
+                    hudLabel = "Revenge: ";
+                    hudTime = Math.max(revengeTime, 0);
+                }
+                Font hudFont = new Font("Papyrus", Font.BOLD, 36);
+                g2d.setFont(hudFont);
+                String hudText = hudLabel + hudTime + "s";
+                int textW = g2d.getFontMetrics().stringWidth(hudText);
+                int padX = 16, padY = 10;
+                int boxX = (getWidth() - textW) / 2 - padX;
+                int boxY = 12;
+                int boxW = textW + padX * 2;
+                int boxH = g2d.getFontMetrics().getHeight() + padY;
+                g2d.setColor(new Color(0, 0, 0, 160));
+                g2d.fillRect(boxX, boxY, boxW, boxH);
+                g2d.setColor(new Color(220, 30, 30));
+                g2d.drawString(hudText, boxX + padX, boxY + g2d.getFontMetrics().getAscent() + padY / 2);
+           }
            g2d.setTransform(camera);
 
             if (GameFrame.getIsFired()){
@@ -176,6 +201,14 @@ public class GameCanvas extends JComponent{
      */
     public void setHidingTime(int i){
         hidingTime = i;
+    }
+
+    public void setHuntingTime(int i){
+        huntingTime = i;
+    }
+
+    public void setRevengeTime(int i){
+        revengeTime = i;
     }
 
     /**

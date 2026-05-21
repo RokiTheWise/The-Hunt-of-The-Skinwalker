@@ -155,6 +155,8 @@ public class GameFrame extends JFrame {
                     huntSeconds = cd.getHuntSeconds();
                     revengeSeconds = cd.getRevengeSeconds();
                     gc.setHidingTime(hideSeconds);
+                    gc.setHuntingTime(huntSeconds);
+                    gc.setRevengeTime(revengeSeconds);
                     gc.setSkinWalkerAttacked(skinwalkerAttacked);
 
                     if (playerType.equals("Skinwalker")){
